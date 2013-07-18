@@ -1,5 +1,3 @@
-
-
 " Setup vundle
 filetype off
 
@@ -385,7 +383,7 @@ let tlist_perl_settings  = 'perl;c:constants;f:formats;l:labels;p:packages;s:sub
 
 nnoremap <leader>f :CtrlP<CR>
 " leader d to CtrlP files in the same dir as the current file
-nnoremap <leader>d :CtrlP :%h<CR>
+nnoremap <leader>d :CtrlP %:h<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
