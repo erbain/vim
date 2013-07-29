@@ -34,7 +34,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/AutoComplPop'
 
 " Browse open buffers <F8>
-Bundle 'thisivan/vim-bufexplorer'
+Bundle 'jeetsukumaran/vim-buffergator'
 
 " Wrapper around CmdAlias
 Bundle 'vim-scripts/cmdalias.vim'
@@ -47,8 +47,6 @@ Bundle 'c9s/perlomni.vim'
 
 " Tab completion while searching
 Bundle 'vim-scripts/SearchComplete'
-
-"Bundle 'vim-scripts/ShowMarks'
 
 " Show / Hide marks in left hand col
 Bundle 'kshenoy/vim-signature'
@@ -137,6 +135,7 @@ set wrap linebreak
 
 " Show spaces and line breaks
 set list listchars=tab:»·,eol:·,trail:·
+autocmd FileType conque_term setlocal nolist 
 
 " Switching buffers is OK with unsaved changes.
 set hidden
@@ -229,7 +228,7 @@ inoremap <PageDown>  <nop>
 nnoremap j gj
 nnoremap k gk
 
-" show the registers from things cut/yanked
+" show thE REGISTERS FROM Things cut/yanked
 nmap <leader>r :registers<CR>
 
 " map the various registers to a leader shortcut for pasting from them
@@ -302,7 +301,6 @@ map ' :set hls!<bar>set hls?<CR>
 nmap \n <Esc>:tabn<CR>
 nmap \p <Esc>:tabp<CR>
 nmap \c <Esc>:tabclose<CR>
-map <F8> :BufExplorer<CR>
 
 " Search word under cursor in current dir
 "map <C-F> <esc>:Grep<CR>
@@ -313,6 +311,13 @@ map <F8> :BufExplorer<CR>
 
 " F6 to toggle mark column - Currently BROKEN
 map <F6> :SignatureToggle<CR>
+
+map <F8> :BuffergatorToggle<CR>
+let g:buffergator_suppress_keymaps = 1
+
+let g:ConqueTerm_ToggleKey = '<F9>'
+let g:ConqueTerm_FastMode = 0 " Disables colors and some unicode support to gain speed
+"let g:ConqueTerm_Color = 1
 
 " Make tab in AutoCmp omni popup select next item
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
