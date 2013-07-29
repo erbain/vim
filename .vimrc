@@ -1,3 +1,5 @@
+set nocompatible
+
 " Setup vundle
 filetype off
 
@@ -111,7 +113,6 @@ filetype indent on
 set t_Co=256
 
 set autoindent
-set mousehide
 set showmatch
 set et
 set sw=2
@@ -290,7 +291,9 @@ noremap <f2> <Esc>:close<CR><Esc>
 nmap <silent> ,/ :nohlsearch<CR>
 
 " Allow saving of files requiring root with :w!!
-cmap w!! w !sudo tee % >/dev/null " Set libs for syntastic
+cmap w!! w !sudo tee % >/dev/null 
+
+" Set libs for syntastic
 let g:syntastic_perl_lib_path = './,./lib,/t/lib'
 
 " Set the currsor to be a rectangle in visual mode and a line in insert mode
