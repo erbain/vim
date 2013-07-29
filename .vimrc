@@ -314,6 +314,7 @@ map <F6> :SignatureToggle<CR>
 
 map <F8> :BuffergatorToggle<CR>
 let g:buffergator_suppress_keymaps = 1
+let g:buffergator_viewport_split_policy = 'T'
 
 let g:ConqueTerm_ToggleKey = '<F9>'
 let g:ConqueTerm_FastMode = 0 " Disables colors and some unicode support to gain speed
