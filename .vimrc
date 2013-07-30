@@ -81,6 +81,8 @@ Bundle 'vim-scripts/sessionman.vim'
 "Shell in VIM, nice MySQL syntax
 Bundle 'basepi/vim-conque'
 
+Bundle 'tpope/vim-unimpaired'
+
 " Required by snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils.git'
 Bundle 'tomtom/tlib_vim'
@@ -345,6 +347,9 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Options for the session plugin to save
 set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
+
+" Delete fugitive buffers when hidden
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Ctrl t toggles the tag list plugin
 nmap <C-t> <Esc>:TagbarToggle<CR>
