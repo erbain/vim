@@ -366,6 +366,7 @@ nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 let g:ctrlp_max_height = 20
 let g:ctrlp_max_files = 50000
+let g:ctrlp_clear_cache_on_exit = 0
 "let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -374,4 +375,5 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
+
 
