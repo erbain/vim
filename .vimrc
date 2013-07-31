@@ -183,7 +183,8 @@ set number
 set shortmess+=I
 
 set background=dark
-colorscheme mustang_custom
+"colorscheme mustang_custom
+colorscheme gruvbox
 
 " Enable syntaxx highlight
 syntax on
