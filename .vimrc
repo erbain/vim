@@ -338,7 +338,7 @@ let g:statline_trailing_space = 0
 let g:statline_show_n_buffers = 0
 
 " Set map to trigger zencoding defaults to C-e use above
-let g:user_zen_leader_key = '<c-e>'
+let g:user_zen_leader_key = '<C-w>'
 
 " Set libs for syntastic
 let g:syntastic_perl_lib_path = './,./lib,/t/lib'
