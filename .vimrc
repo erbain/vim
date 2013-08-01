@@ -98,11 +98,11 @@ Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/JavaScript-Indent'
 
-" Tern broken
+" Tern - looks v interesting but seems broken
 "Bundle 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'mattn/zencoding-vim'
 
 "Done with vundle
 
@@ -318,6 +318,7 @@ map <F6> :SignatureToggle<CR>
 map <F8> :BuffergatorToggle<CR>
 let g:buffergator_suppress_keymaps = 1
 let g:buffergator_viewport_split_policy = 'T'
+let g:buffergator_sort_regime = 'mru'
 
 let g:ConqueTerm_ToggleKey = '<F9>'
 let g:ConqueTerm_FastMode = 0 " Disables colors and some unicode support to gain speed
@@ -336,8 +337,8 @@ let g:statline_trailing_space = 0
 " hide buffer count
 let g:statline_show_n_buffers = 0
 
-" Set map to trigger sparkup defaults to C-e use above
-let g:sparkupExecuteMapping = '<C-w>'
+" Set map to trigger zencoding defaults to C-e use above
+let g:user_zen_leader_key = '<c-e>'
 
 " Set libs for syntastic
 let g:syntastic_perl_lib_path = './,./lib,/t/lib'
