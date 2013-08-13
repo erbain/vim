@@ -105,6 +105,10 @@ Bundle 'vim-scripts/JavaScript-Indent'
 "Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/emmet-vim'
 
+" Install easytags to keep tags file updated
+Bundle 'xolox/vim-misc'
+Bundle 'xolox/vim-easytags'
+
 "Done with vundle
 
 filetype plugin on
@@ -356,6 +360,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Ctrl t toggles the tag list plugin
 nmap <C-t> <Esc>:TagbarToggle<CR>
+
+" Jump to the tagbar window when opened
+let g:tagbar_autofocus = 1
 
 "let g:acp_behaviorSnipmateLength=1
 let g:acp_behaviorPerlOmniLength=1
