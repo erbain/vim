@@ -102,7 +102,8 @@ Bundle 'vim-scripts/JavaScript-Indent'
 "Bundle 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
-Bundle 'mattn/zencoding-vim'
+"Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 
 "Done with vundle
 
@@ -338,7 +339,7 @@ let g:statline_trailing_space = 0
 let g:statline_show_n_buffers = 0
 
 " Set map to trigger zencoding defaults to C-e use above
-let g:user_zen_leader_key = '<C-w>'
+let g:user_emmet_leader_key = '<C-y>'
 
 " Set libs for syntastic
 let g:syntastic_perl_lib_path = './,./lib,/t/lib'
