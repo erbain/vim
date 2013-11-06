@@ -141,7 +141,7 @@ set textwidth=0
 set wrap linebreak
 
 " Show spaces and line breaks
-set list listchars=tab:»·,eol:·,trail:·
+set list listchars=tab:»·,trail:·
 autocmd FileType conque_term setlocal nolist 
 
 " Switching buffers is OK with unsaved changes.
