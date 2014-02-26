@@ -109,6 +109,9 @@ Bundle 'mattn/emmet-vim'
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 
+" Add Coffee Script support
+Bundle 'kchmck/vim-coffee-script'
+
 "Done with vundle
 
 filetype plugin on
