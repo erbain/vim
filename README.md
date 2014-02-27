@@ -16,3 +16,11 @@ Start vim and run :BundleInstall
 Misc :
 
 Current preferred font : Inconsolata (debian package fonts-inconsolata)
+
+Bash Prompt :
+
+Add to ~.bashrc :
+
+if [ -f ~/.vim/bash_devrc ]; then
+  . ~/.vim/bash_devrc
+fi
