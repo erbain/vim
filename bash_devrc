@@ -38,6 +38,8 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias tmux="TERM=screen-256color-bce tmux"
+
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
