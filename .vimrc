@@ -297,6 +297,7 @@ nnoremap <M-down> :resize +5<cr>
 nnoremap <M-up> :resize -5<cr>
 nnoremap <M-right> :vertical resize +5<cr>
 
+
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
 
@@ -328,9 +329,14 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_viewport_split_policy = 'T'
 let g:buffergator_sort_regime = 'mru'
 
+" Settings for Conque Plugin
 let g:ConqueTerm_ToggleKey = '<F9>'
 let g:ConqueTerm_FastMode = 0 " Disables colors and some unicode support to gain speed
-"let g:ConqueTerm_Color = 1
+let g:ConqueTerm_Color = 2
+let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_CloseOnEnd = 1
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_ToggleKey = '<F12>'
 
 " Make tab in AutoCmp omni popup select next item
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
@@ -382,7 +388,7 @@ nnoremap <leader>d :CtrlP %:h<CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>m :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
-let g:ctrlp_max_height = 20
+let g:ctrlp_match_window = 'bottom,order:btt,min:5,max:20,results:50'
 let g:ctrlp_max_files = 50000
 let g:ctrlp_clear_cache_on_exit = 0
 "let g:ctrlp_follow_symlinks = 1
