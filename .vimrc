@@ -355,7 +355,11 @@ let g:statline_show_n_buffers = 0
 let g:user_emmet_leader_key = '<C-y>'
 
 " Set libs for syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_perl_checkers = ['perl', 'perlcritic']
 let g:syntastic_perl_lib_path = './,./lib,/t/lib'
+let g:syntastic_enable_perl_checker = 1
 
 " Set the currsor to be a rectangle in visual mode and a line in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
