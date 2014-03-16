@@ -193,6 +193,7 @@ set number
 set shortmess+=I
 
 "colorscheme mustang_custom
+set bg=dark
 let g:gruvbox_italicize_comments = 0
 colorscheme gruvbox
 
