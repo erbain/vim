@@ -31,7 +31,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 
 " Nice auto complete popup
-Bundle 'vim-scripts/AutoComplPop'
+Bundle  'Valloric/YouCompleteMe'
 
 " Browse open buffers <F8>
 Bundle 'jeetsukumaran/vim-buffergator'
@@ -41,6 +41,9 @@ Bundle 'vim-scripts/cmdalias.vim'
 
 " Grep in VIM
 Bundle 'vim-scripts/grep.vim'
+
+" Misc Perl syntax files
+Bundle 'vim-perl/vim-perl'
 
 " Extra auto complete for perl
 Bundle 'c9s/perlomni.vim'
@@ -72,9 +75,6 @@ Bundle 'Raimondi/delimitMate'
 " Make % match other things like HTML elements
 Bundle 'vim-scripts/matchit.zip'
 
-" Misc Perl syntax files
-Bundle 'vim-perl/vim-perl'
-
 " Session manager
 Bundle 'vim-scripts/sessionman.vim'
 "
@@ -91,15 +91,17 @@ Bundle 'garbas/vim-snipmate'
 
 " Frontend HTML / JS / CSS plugins
 Bundle 'hail2u/vim-css3-syntax'
-Bundle 'jelera/vim-javascript-syntax'
+Bundle "pangloss/vim-javascript"
 
 " Show CSS colours with color as background
 Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
-Bundle 'vim-scripts/JavaScript-Indent'
+
+" Display indentation guides
+Bundle "nathanaelkane/vim-indent-guides"
 
 " Tern - looks v interesting but seems broken
-"Bundle 'marijnh/tern_for_vim'
+Bundle 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
 "Bundle 'mattn/zencoding-vim'
@@ -190,9 +192,12 @@ set number
 " Remove splash screen
 set shortmess+=I
 
-set background=dark
 "colorscheme mustang_custom
+let g:gruvbox_italicize_comments = 0
 colorscheme gruvbox
+
+" Fix indent highlight to work with gruvbox
+let g:indent_guides_auto_colors = 0
 
 " Enable syntaxx highlight
 syntax on
@@ -320,6 +325,12 @@ nmap \c <Esc>:tabclose<CR>
 
 " PLUGIN CONFIG / MAPPINGS
 
+" Enable HTML/CSS highlight in JS
+let javascript_enable_domhtmlcss = 1
+
+" Expand space and <cr> in delimitMate
+let delimitMate_expand_cr = 2
+let delimitMate_expand_space = 1
 
 " F6 to toggle mark column - Currently BROKEN
 map <F6> :SignatureToggle<CR>
@@ -339,7 +350,7 @@ let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_ToggleKey = '<F12>'
 
 " Make tab in AutoCmp omni popup select next item
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
 
 " Setup custom status line
 " Enable fugitive
@@ -378,7 +389,7 @@ nmap <C-t> <Esc>:TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 "let g:acp_behaviorSnipmateLength=1
-let g:acp_behaviorPerlOmniLength=1
+"let g:acp_behaviorPerlOmniLength=1
 
 " <F7> opens the NERDTree Plugin
 map <F7> :NERDTree<cr>
@@ -404,4 +415,6 @@ let g:ctrlp_custom_ignore = {
 
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
+" Disable easy tag warning.
+let g:easytags_updatetime_warn = 0
 
