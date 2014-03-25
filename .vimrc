@@ -18,11 +18,14 @@ Bundle 'scrooloose/syntastic'
 " Git in VIM
 Bundle 'tpope/vim-fugitive'
 
-" <leader><leader> motion allows quick jumping to nearby file locations
-Bundle 'Lokaltog/vim-easymotion'
+" Show git status in the gutter
+Bundle 'airblade/vim-gitgutter'
 
 " Fuzzy finder for files <leader>f,buffers <leader>b and MRU <leader>m
 Bundle 'kien/ctrlp.vim.git'
+
+" Expanding region selection
+Bundle 'terryma/vim-expand-region'
 
 " <leader>c<space> to quickly comment current line
 Bundle 'scrooloose/nerdcommenter'
@@ -48,9 +51,6 @@ Bundle 'vim-perl/vim-perl'
 " Extra auto complete for perl
 Bundle 'c9s/perlomni.vim'
 
-" Tab completion while searching
-Bundle 'vim-scripts/SearchComplete'
-
 " Show / Hide marks in left hand col
 Bundle 'kshenoy/vim-signature'
 
@@ -64,7 +64,8 @@ Bundle 'vim-scripts/SyntaxComplete'
 Bundle 'majutsushi/tagbar'
 
 " Status bar improvments
-Bundle 'millermedeiros/vim-statline'
+"Bundle 'millermedeiros/vim-statline'
+Bundle 'bling/vim-airline'
 
 " Allows cycling back through yanks
 Bundle 'vim-scripts/YankRing.vim'
@@ -113,6 +114,9 @@ Bundle 'xolox/vim-easytags'
 
 " Add Coffee Script support
 Bundle 'kchmck/vim-coffee-script'
+
+" <leader><leader> motion allows quick jumping to nearby file locations
+Bundle 'Lokaltog/vim-easymotion'
 
 "Done with vundle
 
@@ -165,10 +169,8 @@ set incsearch
 " Highlight all search matches
 set hlsearch
 
-" Auto write buffer on switch.
-"set autowrite
-
 " Enable vim AutoCmp menu
+set wildmode=longest,list,full
 set wildmenu
 
 " Set Undo & History
@@ -192,7 +194,6 @@ set number
 " Remove splash screen
 set shortmess+=I
 
-"colorscheme mustang_custom
 set bg=dark
 let g:gruvbox_italicize_comments = 0
 colorscheme gruvbox
@@ -200,7 +201,7 @@ colorscheme gruvbox
 " Fix indent highlight to work with gruvbox
 let g:indent_guides_auto_colors = 0
 
-" Enable syntaxx highlight
+" Enable syntax highlight
 syntax on
 
 " setup a custom dict for spelling
@@ -245,7 +246,7 @@ inoremap <PageDown>  <nop>
 nnoremap j gj
 nnoremap k gk
 
-" show thE REGISTERS FROM Things cut/yanked
+" show registers from things cut/yanked
 nmap <leader>r :registers<CR>
 
 " map the various registers to a leader shortcut for pasting from them
@@ -263,6 +264,7 @@ nmap <leader>9 "9p
 " shortcut to toggle spelling
 nmap <leader>s :setlocal spell! spelllang=en_gb<CR>
 
+" Toggle cursor column display
 nnoremap <Leader>c :set cursorcolumn!<CR>
 
 " shortcuts to open/close the quickfix window
@@ -297,12 +299,11 @@ map <C-l> <C-w>l
 " happen as if in command mode )
 imap <C-W> <C-O><C-W>
 
-" resize current buffer by +/- 5 
+" resize current buffer by +/- 5
 nnoremap <M-left> :vertical resize -5<cr>
 nnoremap <M-down> :resize +5<cr>
 nnoremap <M-up> :resize -5<cr>
 nnoremap <M-right> :vertical resize +5<cr>
-
 
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
@@ -315,7 +316,7 @@ imap jj <ESC>
 
 " Tab options
 nmap \t <Esc>:tabnew<CR>
-map ' :set hls!<bar>set hls?<CR>
+"map ' :set hls!<bar>set hls?<CR>
 nmap \n <Esc>:tabn<CR>
 nmap \p <Esc>:tabp<CR>
 nmap \c <Esc>:tabclose<CR>
@@ -323,11 +324,44 @@ nmap \c <Esc>:tabclose<CR>
 " Search word under cursor in current dir
 "map <C-F> <esc>:Grep<CR>
 
+" Space bar toggles fold or creates fold in v mode
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
 
 " PLUGIN CONFIG / MAPPINGS
 
+" Easy Motion
+
+let g:EasyMotion_smartcase = 1
+
+" Better motion searhcing
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+
+" 2 char searching
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+"hjkl motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+
+"YCM Options
+let g:ycm_allow_changing_updatetime = 0
+set updatetime=1000
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+
+
 " Enable HTML/CSS highlight in JS
 let javascript_enable_domhtmlcss = 1
+
 
 " Expand space and <cr> in delimitMate
 let delimitMate_expand_cr = 2
@@ -341,6 +375,7 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_viewport_split_policy = 'T'
 let g:buffergator_sort_regime = 'mru'
 
+
 " Settings for Conque Plugin
 let g:ConqueTerm_ToggleKey = '<F9>'
 let g:ConqueTerm_FastMode = 0 " Disables colors and some unicode support to gain speed
@@ -350,10 +385,9 @@ let g:ConqueTerm_CloseOnEnd = 1
 let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_ToggleKey = '<F12>'
 
-" Make tab in AutoCmp omni popup select next item
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<C-g>u\<Tab>"
 
 " Setup custom status line
+
 " Enable fugitive
 let g:statline_fugitive = 1 
 " Show file paths
@@ -363,41 +397,46 @@ let g:statline_trailing_space = 0
 " hide buffer count
 let g:statline_show_n_buffers = 0
 
-" Set map to trigger zencoding defaults to C-e use above
+
+" Set map to trigger zencoding defaults to C-e used above
 let g:user_emmet_leader_key = '<C-y>'
+
 
 " Set libs for syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_perl_checkers = ['perl', 'perlcritic']
-let g:syntastic_perl_lib_path = './,./lib,/t/lib'
+let g:syntastic_perl_lib_path = [ './',  './lib', './t/lib' ]
 let g:syntastic_enable_perl_checker = 1
+
 
 " Set the currsor to be a rectangle in visual mode and a line in insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+
 " Options for the session plugin to save
 set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
+
 
 " Delete fugitive buffers when hidden
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+
 " Ctrl t toggles the tag list plugin
 nmap <C-t> <Esc>:TagbarToggle<CR>
+
 
 " Jump to the tagbar window when opened
 let g:tagbar_autofocus = 1
 
-"let g:acp_behaviorSnipmateLength=1
-"let g:acp_behaviorPerlOmniLength=1
 
 " <F7> opens the NERDTree Plugin
 map <F7> :NERDTree<cr>
 let NERDTreeShowBookmarks=1
 
-" CtrlP Settings
 
+" CtrlP Settings
 nnoremap <leader>f :CtrlP<CR>
 " leader d to CtrlP files in the same dir as the current file
 nnoremap <leader>d :CtrlP %:h<CR>
@@ -416,6 +455,12 @@ let g:ctrlp_custom_ignore = {
 
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
+
 " Disable easy tag warning.
 let g:easytags_updatetime_warn = 0
 
+" Airline
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+    "let g:airline_symbols = {}

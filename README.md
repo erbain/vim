@@ -38,7 +38,14 @@ npm install
 
 Misc :
 
-Current preferred font : Inconsolata (debian package fonts-inconsolata)
+Current preferred font : Inconsolata-dz
+
+```
+mkdir -p ~/.fonts
+cp Inconsolata-dz\ for\ Powerline.otf ~/.fonts/
+fc-cache -vf ~/.fonts
+```
+
 
 Bash Prompt :
 
