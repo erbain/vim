@@ -357,8 +357,10 @@ map <Leader>h <Plug>(easymotion-linebackward)
 "YCM Options
 let g:ycm_allow_changing_updatetime = 0
 set updatetime=1000
+let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 
 " Enable HTML/CSS highlight in JS
@@ -469,5 +471,9 @@ let g:easytags_updatetime_warn = 0
 " Airline
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_powerline_fonts = 1
-"if !exists('g:airline_symbols')
-    "let g:airline_symbols = {}
+
+
+" Indent Guides <leader>ig
+let g:indent_guides_start_level=2
+let g:indent_guides_guide_size=1
+
