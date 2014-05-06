@@ -64,7 +64,6 @@ Bundle 'vim-scripts/SyntaxComplete'
 Bundle 'majutsushi/tagbar'
 
 " Status bar improvments
-"Bundle 'millermedeiros/vim-statline'
 Bundle 'bling/vim-airline'
 
 " Allows cycling back through yanks
@@ -117,6 +116,9 @@ Bundle 'kchmck/vim-coffee-script'
 
 " <leader><leader> motion allows quick jumping to nearby file locations
 Bundle 'Lokaltog/vim-easymotion'
+
+" tmux nav integration
+Bundle 'christoomey/vim-tmux-navigator'
 
 "Done with vundle
 
@@ -411,9 +413,13 @@ let g:syntastic_enable_perl_checker = 1
 
 
 " Set the currsor to be a rectangle in visual mode and a line in insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
+if &term =~ '^screen'
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " Options for the session plugin to save
 set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,resize,tabpages,winsize,winpos
@@ -458,6 +464,7 @@ let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
 " Disable easy tag warning.
 let g:easytags_updatetime_warn = 0
+
 
 " Airline
 let g:airline#extensions#whitespace#enabled = 0
