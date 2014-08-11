@@ -83,11 +83,9 @@ Bundle 'basepi/vim-conque'
 
 Bundle 'tpope/vim-unimpaired'
 
-" Required by snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils.git'
-Bundle 'tomtom/tlib_vim'
-" Text snippets
-Bundle 'garbas/vim-snipmate'
+" Snipits that integrate with YCM
+Bundle 'sirver/ultisnips'
+Bundle 'honza/vim-snippets'
 
 " Frontend HTML / JS / CSS plugins
 Bundle 'hail2u/vim-css3-syntax'
@@ -97,22 +95,22 @@ Bundle "pangloss/vim-javascript"
 Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
 
-" Display indentation guides
-Bundle "nathanaelkane/vim-indent-guides"
+" Coffe Script syntax, indenting, compiling etc
+Bundle 'kchmck/vim-coffee-script'
 
 " Tern - looks v interesting but seems broken
 Bundle 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
-"Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/emmet-vim'
+
+" Display indentation guides
+Bundle "nathanaelkane/vim-indent-guides"
 
 " Install easytags to keep tags file updated
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-easytags'
 
-" Add Coffee Script support
-Bundle 'kchmck/vim-coffee-script'
 
 " <leader><leader> motion allows quick jumping to nearby file locations
 Bundle 'Lokaltog/vim-easymotion'
@@ -145,8 +143,8 @@ set shiftround
 " Always show the status line (0=never, 1=2+ windows, 2=always)
 set laststatus=2
 
-" don't split lines of text
-set textwidth=0
+" Auto wrap text (comments) at 78 chars
+set textwidth=78
 
 " Warp on line breaks
 set wrap linebreak
@@ -306,6 +304,10 @@ nnoremap <M-left> :vertical resize -5<cr>
 nnoremap <M-down> :resize +5<cr>
 nnoremap <M-up> :resize -5<cr>
 nnoremap <M-right> :vertical resize +5<cr>
+
+" Open splits on the right / bottom
+set splitbelow
+set splitright
 
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
