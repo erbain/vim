@@ -118,6 +118,10 @@ Bundle 'Lokaltog/vim-easymotion'
 " tmux nav integration
 Bundle 'christoomey/vim-tmux-navigator'
 
+Bundle 'vim-scripts/SQLUtilities'
+" Required by SQLUtilities
+Bundle 'vim-scripts/Align'
+
 "Done with vundle
 
 filetype plugin on
@@ -144,7 +148,7 @@ set shiftround
 set laststatus=2
 
 " Auto wrap text (comments) at 78 chars
-set textwidth=78
+"set textwidth=78
 
 " Warp on line breaks
 set wrap linebreak
@@ -215,6 +219,10 @@ set cursorline
 " ,c toggles highlight of current column
 set nocursorcolumn
 
+" Open splits on the right / bottom
+set splitbelow
+set splitright
+
 
 " GENERIC VIM KEY MAPPINGS
 
@@ -269,11 +277,11 @@ nnoremap <Leader>c :set cursorcolumn!<CR>
 
 " shortcuts to open/close the quickfix window
 nmap <leader>q :copen<CR>
-nmap <leader>qq :cclose<CR>
-nmap <leader>l :lopen<CR>
-nmap <leader>ll :lclose<CR>
-nmap <leader>ln :lN<CR>
-nmap <leader>lp :lN<CR>
+nmap <leader>qc :cclose<CR>
+nmap <leader>e :lopen<CR>
+nmap <leader>ec :lclose<CR>
+nmap <leader>en :lN<CR>
+nmap <leader>ep :lN<CR>
 
 " Map perltidy to <leader>pt
 nnoremap <leader>pt :%!perltidy -q<cr> " only works in 'normal' mode
@@ -304,10 +312,6 @@ nnoremap <M-left> :vertical resize -5<cr>
 nnoremap <M-down> :resize +5<cr>
 nnoremap <M-up> :resize -5<cr>
 nnoremap <M-right> :vertical resize +5<cr>
-
-" Open splits on the right / bottom
-set splitbelow
-set splitright
 
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
@@ -409,11 +413,16 @@ let g:user_emmet_leader_key = '<C-y>'
 
 
 " Set libs for syntastic
+let g:syntastic_loc_list_height = 5
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_perl_checkers = ['perl', 'perlcritic']
-let g:syntastic_perl_lib_path = [ './',  './lib', './t/lib' ]
+let g:syntastic_perl_lib_path = [ './',  './lib', './t/lib', '/home/ewan/dev/vX/WCN/lib' ]
 let g:syntastic_enable_perl_checker = 1
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+"let g:syntastic_javascript_jshint_args = '--config ~/DevEnv/jshintrc'
+let g:indent_guides_guide_size=1
 
 
 " Set the currsor to be a rectangle in visual mode and a line in insert mode
@@ -477,5 +486,6 @@ let g:airline_powerline_fonts = 1
 
 " Indent Guides <leader>ig
 let g:indent_guides_start_level=2
-let g:indent_guides_guide_size=1
 
+" Auto change cwd so syntasitc plugins can find local config files
+autocmd BufEnter * silent! lcd %:p:h
