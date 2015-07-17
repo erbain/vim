@@ -458,7 +458,7 @@ let g:ctrlp_max_files = 50000
 let g:ctrlp_clear_cache_on_exit = 0
 "let g:ctrlp_follow_symlinks = 1
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'dir':  '\v[\/]\.(git|hg|svn)|dist$',
   \ 'file': '\v(\.(exe|so|dll|tar|gz|swp|bin|zip|tgz))|(-min.js|.min.js)$',
   \ 'link': '',
   \ }
