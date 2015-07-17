@@ -7,117 +7,120 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Vim-script library used by other plugins
-Bundle 'vim-scripts/L9'
+Plugin 'vim-scripts/L9'
 
 " Syntax check files on save
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
 " Git in VIM
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Show git status in the gutter
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 
 " Fuzzy finder for files <leader>f,buffers <leader>b and MRU <leader>m
-Bundle 'kien/ctrlp.vim.git'
+Plugin 'kien/ctrlp.vim.git'
 
 " Expanding region selection
-Bundle 'terryma/vim-expand-region'
+Plugin 'terryma/vim-expand-region'
 
 " <leader>c<space> to quickly comment current line
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 
 " File browser
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 " Nice auto complete popup
-Bundle  'Valloric/YouCompleteMe'
+Plugin  'Valloric/YouCompleteMe'
 
 " Wrapper around CmdAlias
-Bundle 'vim-scripts/cmdalias.vim'
+Plugin 'vim-scripts/cmdalias.vim'
 
 " Grep in VIM
-Bundle 'vim-scripts/grep.vim'
+Plugin 'vim-scripts/grep.vim'
 
 " Misc Perl syntax files
-Bundle 'vim-perl/vim-perl'
+Plugin 'vim-perl/vim-perl'
 
 " Extra auto complete for perl
-Bundle 'c9s/perlomni.vim'
+Plugin 'c9s/perlomni.vim'
 
 " Show / Hide marks in left hand col
-Bundle 'kshenoy/vim-signature'
+Plugin 'kshenoy/vim-signature'
 
 " Easily change somethings surroundings cs"' to change double to single quotes.
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
 " Extend VIMs autocimplete
-Bundle 'vim-scripts/SyntaxComplete'
+Plugin 'vim-scripts/SyntaxComplete'
 
 " Show / Update files tags
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 " Status bar improvments
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " Allows cycling back through yanks
-Bundle 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/YankRing.vim'
 
 " Intelligently auto close quotes, brackets etc
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 
 " Make % match other things like HTML elements
-Bundle 'vim-scripts/matchit.zip'
+Plugin 'vim-scripts/matchit.zip'
 
 " Session manager
-Bundle 'vim-scripts/sessionman.vim'
+Plugin 'vim-scripts/sessionman.vim'
 "
 "Shell in VIM, nice MySQL syntax
-Bundle 'basepi/vim-conque'
+Plugin 'basepi/vim-conque'
 
-Bundle 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-unimpaired'
 
 " Snipits that integrate with YCM
-Bundle 'sirver/ultisnips'
-Bundle 'honza/vim-snippets'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " Frontend HTML / JS / CSS plugins
-Bundle 'hail2u/vim-css3-syntax'
-Bundle "pangloss/vim-javascript"
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'pangloss/vim-javascript'
 
 " Show CSS colours with color as background
-Bundle 'ap/vim-css-color'
-Bundle 'groenewege/vim-less'
+Plugin 'ap/vim-css-color'
+Plugin 'groenewege/vim-less'
 
 " Coffe Script syntax, indenting, compiling etc
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'kchmck/vim-coffee-script'
 
 " Tern - looks v interesting but seems broken
-Bundle 'marijnh/tern_for_vim'
+Plugin 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 
 " Display indentation guides
-Bundle "nathanaelkane/vim-indent-guides"
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Install easytags to keep tags file updated
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-easytags'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 
 " <leader><leader> motion allows quick jumping to nearby file locations
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
 " tmux nav integration
-Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
 
-Bundle 'vim-scripts/SQLUtilities'
+Plugin 'vim-scripts/SQLUtilities'
 " Required by SQLUtilities
-Bundle 'vim-scripts/Align'
+Plugin 'vim-scripts/Align'
+
+" Theme
+Plugin 'NLKNguyen/papercolor-theme'
 
 "Done with vundle
 
@@ -195,9 +198,12 @@ set number
 " Remove splash screen
 set shortmess+=I
 
-set bg=dark
-let g:gruvbox_italicize_comments = 0
-colorscheme gruvbox
+"set bg=dark
+"let g:gruvbox_italicize_comments = 0
+"colorscheme gruvbox
+
+set background=dark
+colorscheme PaperColor
 
 " Fix indent highlight to work with gruvbox
 let g:indent_guides_auto_colors = 0
@@ -471,6 +477,7 @@ let g:easytags_updatetime_warn = 0
 
 
 " Airline
+let g:airline_theme='PaperColor'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_powerline_fonts = 1
 
