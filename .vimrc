@@ -36,9 +36,6 @@ Bundle 'scrooloose/nerdtree'
 " Nice auto complete popup
 Bundle  'Valloric/YouCompleteMe'
 
-" Browse open buffers <F8>
-Bundle 'jeetsukumaran/vim-buffergator'
-
 " Wrapper around CmdAlias
 Bundle 'vim-scripts/cmdalias.vim'
 
@@ -377,14 +374,8 @@ let javascript_enable_domhtmlcss = 1
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 
-" F6 to toggle mark column - Currently BROKEN
+" F6 to toggle mark column
 map <F6> :SignatureToggle<CR>
-
-map <F8> :BuffergatorToggle<CR>
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_viewport_split_policy = 'T'
-let g:buffergator_sort_regime = 'mru'
-
 
 " Settings for Conque Plugin
 let g:ConqueTerm_ToggleKey = '<F9>'
