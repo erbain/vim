@@ -34,7 +34,12 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 
 " Nice auto complete popup
-Plugin  'Valloric/YouCompleteMe'
+"Plugin  'Valloric/YouCompleteMe'
+
+" Neocomplete plugin
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 
 " Wrapper around CmdAlias
 Plugin 'vim-scripts/cmdalias.vim'
@@ -79,10 +84,6 @@ Plugin 'vim-scripts/sessionman.vim'
 Plugin 'basepi/vim-conque'
 
 Plugin 'tpope/vim-unimpaired'
-
-" Snipits that integrate with YCM
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
 
 " Frontend HTML / JS / CSS plugins
 Plugin 'hail2u/vim-css3-syntax'
@@ -276,7 +277,7 @@ nmap <leader>9 "9p
 nmap <leader>s :setlocal spell! spelllang=en_gb<CR>
 
 " Toggle cursor column display
-nnoremap <Leader>c :set cursorcolumn!<CR>
+nnoremap <Leader>ct :set cursorcolumn!<CR>
 
 " shortcuts to open/close the quickfix window
 nmap <leader>q :copen<CR>
@@ -286,15 +287,28 @@ nmap <leader>ec :lclose<CR>
 nmap <leader>en :lN<CR>
 nmap <leader>ep :lN<CR>
 
+" Save buffer with 2 keys
+" If the current buffer has never been saved, it will have no name,
+" call the file browser to save it, otherwise just save it.
+command -nargs=0 -bar Update if &modified 
+                           \|    if empty(bufname('%'))
+                           \|        browse confirm write
+                           \|    else
+                           \|        confirm write
+                           \|    endif
+                           \|endif
+nnoremap <silent> <C-S> :<C-u>Update<CR>
+inoremap <c-s> <c-o>:Update<CR>
+
+" for when we forget to use sudo to open/edit a file
+cmap w!! w !sudo tee % >/dev/null
+
 " Map perltidy to <leader>pt
 nnoremap <leader>pt :%!perltidy -q<cr> " only works in 'normal' mode
 vnoremap <leader>pt :!perltidy -q<cr> " only works in 'visual' mode
 
 vnoremap < <gv
 vnoremap > >gv
-
-" for when we forget to use sudo to open/edit a file
-cmap w!! w !sudo tee % >/dev/null
 
 " Scroll the viewport 3 lines vs just 1 line at a time
 noremap <C-e> 3<C-e>
@@ -306,15 +320,17 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" make these all work in insert mode too ( <C-O> makes next cmd
-" happen as if in command mode )
-imap <C-W> <C-O><C-W>
+" Fix alt mappings
+execute "set <M-h>=\eh"
+execute "set <M-j>=\ej"
+execute "set <M-k>=\ek"
+execute "set <M-l>=\el"
 
 " resize current buffer by +/- 5
-nnoremap <M-left> :vertical resize -5<cr>
-nnoremap <M-down> :resize +5<cr>
-nnoremap <M-up> :resize -5<cr>
-nnoremap <M-right> :vertical resize +5<cr>
+nnoremap <M-h> :vertical resize -5<cr>
+nnoremap <M-j> :resize +5<cr>
+nnoremap <M-k> :resize -5<cr>
+nnoremap <M-l> :vertical resize +5<cr>
 
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
@@ -332,13 +348,9 @@ nmap \n <Esc>:tabn<CR>
 nmap \p <Esc>:tabp<CR>
 nmap \c <Esc>:tabclose<CR>
 
-" Search word under cursor in current dir
-"map <C-F> <esc>:Grep<CR>
-
 " Space bar toggles fold or creates fold in v mode
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
-
 
 " PLUGIN CONFIG / MAPPINGS
 
@@ -364,12 +376,92 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 
 "YCM Options
-let g:ycm_allow_changing_updatetime = 0
-set updatetime=1000
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_allow_changing_updatetime = 0
+"set updatetime=1000
+"let g:ycm_complete_in_strings = 1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_seed_identifiers_with_syntax = 1
+
+"Neocomplete Options
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplete#close_popup()
+inoremap <expr><C-e> neocomplete#cancel_popup()
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+
+" Neosnipet options
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 
 " Enable HTML/CSS highlight in JS
