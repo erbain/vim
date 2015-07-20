@@ -192,10 +192,6 @@ set noswapfile
 " Show line numbers
 set number
 
-"set guioptions-=m  "remove menu bar
-"set guioptions-=T  "remove toolbar
-"set guioptions-=r  "remove right-hand scroll bar
-
 " Remove splash screen
 set shortmess+=I
 
@@ -240,11 +236,12 @@ nnoremap ; :
 " F5 to toggle set paste
 set pastetoggle=<F5>
 
-" Disable arrow keys to force use of hjkl
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" Disable arrow keys to force use of hjkl, use to resize splits
+nnoremap <left> :vertical resize -5<cr>
+nnoremap <down> :resize +5<cr>
+nnoremap <up> :resize -5<cr>
+nnoremap <right> :vertical resize +5<cr>
+
 map <PageUp> <nop>
 map <PageDown> <nop>
 inoremap <Left>  <nop>
