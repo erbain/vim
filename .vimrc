@@ -320,17 +320,11 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Fix alt mappings
-execute "set <M-h>=\eh"
-execute "set <M-j>=\ej"
-execute "set <M-k>=\ek"
-execute "set <M-l>=\el"
-
 " resize current buffer by +/- 5
-nnoremap <M-h> :vertical resize -5<cr>
-nnoremap <M-j> :resize +5<cr>
-nnoremap <M-k> :resize -5<cr>
-nnoremap <M-l> :vertical resize +5<cr>
+"nnoremap <M-h> :vertical resize -5<cr>
+"nnoremap <M-j> :resize +5<cr>
+"nnoremap <M-k> :resize -5<cr>
+"nnoremap <M-l> :vertical resize +5<cr>
 
 " <F2> close current window 
 noremap <f2> <Esc>:close<CR><Esc>
@@ -427,10 +421,6 @@ inoremap <expr><C-y> neocomplete#close_popup()
 inoremap <expr><C-e> neocomplete#cancel_popup()
 " Close popup by <Space>.
 "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
-
 
 " Neosnipet options
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -564,8 +554,12 @@ let g:ctrlp_custom_ignore = {
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
 
-" Disable easy tag warning.
+" Easy tags config.
 let g:easytags_updatetime_warn = 0
+let g:easytags_async = 1
+let g:easytags_on_cursorhold = 0
+let g:easytags_auto_highlight = 0
+let g:easytags_auto_update = 0
 
 
 " Airline
