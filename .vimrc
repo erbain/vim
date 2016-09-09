@@ -294,7 +294,7 @@ nmap <leader>ep :lN<CR>
 " Save buffer with 2 keys
 " If the current buffer has never been saved, it will have no name,
 " call the file browser to save it, otherwise just save it.
-command -nargs=0 -bar Update if &modified 
+com -nargs=0 -bar Update if &modified 
                            \|    if empty(bufname('%'))
                            \|        browse confirm write
                            \|    else
@@ -306,6 +306,10 @@ inoremap <c-s> <c-o>:Update<CR>
 
 " for when we forget to use sudo to open/edit a file
 cmap w!! w !sudo tee % >/dev/null
+
+com! FormatJSON %!python -m json.tool
+nmap =j :FormatJSON<cr>
+
 
 " Map perltidy to <leader>pt
 nnoremap <leader>pt :%!perltidy -q<cr> " only works in 'normal' mode
