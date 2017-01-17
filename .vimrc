@@ -3,127 +3,133 @@ set nocompatible
 " Setup vundle
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+Plug 'gmarik/vundle'
 
 " Vim-script library used by other plugins
-Plugin 'vim-scripts/L9'
+Plug 'vim-scripts/L9'
 
 " Syntax check files on save
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
 " Git in VIM
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Show git status in the gutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Fuzzy finder for files <leader>f,buffers <leader>b and MRU <leader>m
-Plugin 'kien/ctrlp.vim.git'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Expanding region selection
-Plugin 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 
 " <leader>c<space> to quickly comment current line
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " File browser
-Plugin 'scrooloose/nerdtree'
-
-" Nice auto complete popup
-"Plugin  'Valloric/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
 
 " Neocomplete plugin
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 
 " Wrapper around CmdAlias
-Plugin 'vim-scripts/cmdalias.vim'
+Plug 'vim-scripts/cmdalias.vim'
 
 " Grep in VIM
-Plugin 'vim-scripts/grep.vim'
+Plug 'vim-scripts/grep.vim'
 
 " Misc Perl syntax files
-Plugin 'vim-perl/vim-perl'
+Plug 'vim-perl/vim-perl'
 
 " Extra auto complete for perl
-Plugin 'c9s/perlomni.vim'
+Plug 'c9s/perlomni.vim'
 
 " Show / Hide marks in left hand col
-Plugin 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " Easily change somethings surroundings cs"' to change double to single quotes.
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Extend VIMs autocimplete
-Plugin 'vim-scripts/SyntaxComplete'
+Plug 'vim-scripts/SyntaxComplete'
 
 " Show / Update files tags
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Status bar improvments
-Plugin 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Allows cycling back through yanks
-Plugin 'vim-scripts/YankRing.vim'
+Plug 'vim-scripts/YankRing.vim'
 
 " Intelligently auto close quotes, brackets etc
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 
 " Make % match other things like HTML elements
-Plugin 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip'
 
 " Session manager
-Plugin 'vim-scripts/sessionman.vim'
+Plug 'vim-scripts/sessionman.vim'
 "
 "Shell in VIM, nice MySQL syntax
-Plugin 'basepi/vim-conque'
+Plug 'basepi/vim-conque'
 
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Frontend HTML / JS / CSS plugins
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'pangloss/vim-javascript'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'pangloss/vim-javascript'
 
 " Show CSS colours with color as background
-Plugin 'ap/vim-css-color'
-Plugin 'groenewege/vim-less'
+Plug 'ap/vim-css-color'
+Plug 'groenewege/vim-less'
 
 " Coffe Script syntax, indenting, compiling etc
-Plugin 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script'
 
 " Tern - looks v interesting but seems broken
-Plugin 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim'
 
 " Expand string to HTML markup
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 " Display indentation guides
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 
 " Install easytags to keep tags file updated
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 
 
 " <leader><leader> motion allows quick jumping to nearby file locations
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 " tmux nav integration
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 
-Plugin 'vim-scripts/SQLUtilities'
+" tmux focus events passed to vim
+Plug 'tmux-plugins/vim-tmux-focus-events'
+
+Plug 'vim-scripts/SQLUtilities'
 " Required by SQLUtilities
-Plugin 'vim-scripts/Align'
+Plug 'vim-scripts/Align'
+
+" Typescript / Angular2 Support
+Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
 
 " Theme
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'altercation/vim-colors-solarized'
 
-"Done with vundle
+"Done with vim-plug
+call plug#end()
 
 filetype plugin on
 filetype indent on
@@ -195,18 +201,17 @@ set number
 " Remove splash screen
 set shortmess+=I
 
-"set bg=dark
-"let g:gruvbox_italicize_comments = 0
-"colorscheme gruvbox
-
 set background=dark
-colorscheme PaperColor
+colorscheme solarized
+let g:solarized_termtrans=1
 
 " Fix indent highlight to work with gruvbox
 let g:indent_guides_auto_colors = 0
 
 " Enable syntax highlight
 syntax on
+" Make visually selected lines readable
+highlight! link Visual CursorLine
 
 " setup a custom dict for spelling
 " zg = add word to dict
@@ -560,7 +565,8 @@ let g:easytags_auto_update = 0
 
 
 " Airline
-let g:airline_theme='PaperColor'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_powerline_fonts = 1
 
