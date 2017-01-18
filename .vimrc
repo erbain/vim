@@ -124,7 +124,8 @@ Plug 'vim-scripts/Align'
 " Typescript / Angular2 Support
 Plug 'leafgarland/typescript-vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
+Plug 'Quramy/tsuquyomi'
+Plug 'jason0x43/vim-js-indent'
 
 " Theme
 Plug 'altercation/vim-colors-solarized'
