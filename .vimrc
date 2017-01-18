@@ -94,7 +94,8 @@ Plug 'groenewege/vim-less'
 Plug 'kchmck/vim-coffee-script'
 
 " Tern - looks v interesting but seems broken
-Plug 'marijnh/tern_for_vim'
+Plug 'marijnh/tern_for_vim', {'do' : 'npm install'}
+
 
 " Expand string to HTML markup
 Plug 'mattn/emmet-vim'
