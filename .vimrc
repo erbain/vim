@@ -23,6 +23,9 @@ Plug 'airblade/vim-gitgutter'
 " Fuzzy finder for files <leader>f,buffers <leader>b and MRU <leader>m
 Plug 'ctrlpvim/ctrlp.vim'
 
+" Extension for ctrlp to allow buffers to be closed
+Plug 'd11wtq/ctrlp_bdelete.vim'
+
 " Expanding region selection
 Plug 'terryma/vim-expand-region'
 
@@ -161,6 +164,9 @@ set laststatus=2
 
 " Warp on line breaks
 set wrap linebreak
+
+" Force diffs to wrap
+autocmd FilterWritePre * if &diff | setlocal wrap< | endif
 
 " Show spaces and line breaks
 set list listchars=tab:»·,trail:·
@@ -558,6 +564,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v(\.(exe|so|dll|tar|gz|swp|bin|zip|tgz))|(-min.js|.min.js)$',
   \ 'link': '',
   \ }
+call ctrlp_bdelete#init()
 
 let g:used_javascript_libs = 'jquery,angularjs,requirejs'
 
