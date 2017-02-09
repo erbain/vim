@@ -5,9 +5,6 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle
-Plug 'gmarik/vundle'
-
 " Vim-script library used by other plugins
 Plug 'vim-scripts/L9'
 
@@ -447,7 +444,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=nc
+  set conceallevel=2
 endif
 
 
