@@ -128,7 +128,8 @@ Plug 'Quramy/tsuquyomi'
 Plug 'jason0x43/vim-js-indent'
 
 " Theme
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 "Done with vim-plug
 call plug#end()
@@ -137,7 +138,12 @@ filetype plugin on
 filetype indent on
 
 " Force 256 color support in Konsole
-set t_Co=256
+"set t_Co=256
+"set termguicolors
+
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 set autoindent
 set showmatch
@@ -207,8 +213,7 @@ set number
 set shortmess+=I
 
 set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+colorscheme gruvbox 
 
 " Fix indent highlight to work with gruvbox
 let g:indent_guides_auto_colors = 0
